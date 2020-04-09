@@ -1,6 +1,6 @@
 import os
 import sqlite3
-from AliexpressOrdersAutomation.AliexpressOrderHelper.ali_login import Aliexpress
+from ali_login import Aliexpress
 from selenium import webdriver
 
 # checking if db exists and creating db file if doesn't
