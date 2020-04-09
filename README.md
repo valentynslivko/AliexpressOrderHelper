@@ -1,5 +1,5 @@
 # AliexpressOrderHelper
-
+(Linux only)
 AliexpressOrderHelper is a simple tool that helps you to get summary about your orders. Because of the absence of customer API at Aliexpress side this tool is using <a href="https://github.com/SeleniumHQ/selenium/tree/master/py">Python Selenium.</a><br>
 Currently this tool has very limited functionality, but it will be expanded later.<br>
 
