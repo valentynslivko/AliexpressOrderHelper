@@ -130,3 +130,6 @@ dmypy.json
 
 # geckodriver log
 geckodriver.log
+
+# local db
+AliexpressOrderData.db
