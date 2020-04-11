@@ -66,27 +66,28 @@ class Aliexpress:
 			elements, but different orders (and converting into text using .text attribute)
 			'''
 
-			get_orders_head = self.driver.find_elements_by_class_name('order-head')
-			# get_orders_body = self.driver.find_elements_by_class_name('order-body')
+			wrapper = self.driver.find_elements_by_class_name('order-item-wraper')
 
-			for order in get_orders_head:
-				order_id = order.find_element_by_class_name('first-row').find_element_by_class_name('info-body').text
+			for element in wrapper:
+				order_id = element.find_element_by_class_name(
+					'order-head').find_element_by_class_name(
+					'order-info').find_element_by_class_name('first-row').find_element_by_class_name('info-body').text
 				yield order_id
-				order_time = order.find_element_by_class_name('second-row').find_element_by_class_name('info-body').text
-				yield order_time
-				order_price = order.find_element_by_class_name('amount-num').text
+
+				order_date = element.find_element_by_class_name(
+					'order-head').find_element_by_class_name(
+					'order-info').find_element_by_class_name('second-row').find_element_by_class_name('info-body').text
+				yield order_date
+
+				order_price = element.find_element_by_class_name(
+					'order-head').find_element_by_class_name('order-amount').find_element_by_class_name(
+					'amount-body').find_element_by_class_name('amount-num').text
 				yield order_price
 
-				# TODO: add parsing of dispute status and write to db;
-
-				# everything_about_order = order_id, order_time, order_price
-				# yield everything_about_order
-			# for description in get_orders_body:
-			# 	order_description = description.find_element_by_class_name(
-			# 		'product-sets'
-			# 	).find_element_by_class_name(
-			# 		'product-title').find_element_by_class_name('baobei-name').text
-			# 	yield order_description
+				dispute_status = element.find_element_by_class_name(
+					'order-body').find_element_by_class_name(
+					'product-action').find_element_by_tag_name('a').text
+				yield dispute_status
 
 		else:
 			self.driver.close()
